@@ -9,7 +9,7 @@ export const Layout = ({ children }: Props) => {
 }
 
 const Content = styled.div`
-  max-width: 1200px;
+  max-width: 1000px;
   margin: auto;
   padding: 30px;
   min-height: 100vh;
