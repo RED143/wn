@@ -46,5 +46,5 @@ export const CityWeatherChart = ({ type }: Props) => {
 }
 
 const StyledChart = styled.div`
-  height: 400px;
+  height: 500px;
 `

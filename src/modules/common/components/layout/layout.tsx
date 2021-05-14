@@ -9,11 +9,11 @@ export const Layout = ({ children }: Props) => {
 }
 
 const Content = styled.div`
-  max-width: 1000px;
-  margin: auto;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
   padding: 30px;
   gap: 30px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 `

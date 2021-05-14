@@ -1,33 +1,33 @@
-import React from 'react'
+import { FC, useState } from 'react'
+
+import dynamic from 'next/dynamic'
 
 import { City } from '@modules/common/common.types'
-import { Widget } from '@components/widget'
-import { useCity } from '@modules/common/city.context'
+import { Widget } from '@modules/common/components/widget'
+
+import { LeafletMapProps } from './components/leaflet-map/leaflet-map'
+import { MapFilter } from './components/map-filler'
+
+const LeafletMap = dynamic(
+  () => import('./components/leaflet-map').then(mod => mod.LeafletMap),
+  {
+    ssr: false,
+  }
+) as FC<LeafletMapProps>
 
 interface Props {
   cities: City[]
 }
 
-const renderOptions = (cities: City[]) =>
-  cities.map((city, index) => (
-    <option key={city.station_id} value={index}>
-      {city.place_name}
-    </option>
-  ))
-
 export const Map = ({ cities }: Props) => {
-  const { dispatch } = useCity()
-  useCity
+  const [filter, setFilter] = useState('')
 
-  const onChange = (e: any) => {
-    dispatch({ type: 'UPADTE_CITY', payload: cities[e.target.value] })
-  }
+  const filteredCities = cities.filter(city => city.place_name.includes(filter))
 
   return (
     <Widget title="Map">
-      <select value={0} onChange={onChange} name="city">
-        {renderOptions(cities)}
-      </select>
+      <MapFilter value={filter} onChange={setFilter} />
+      <LeafletMap cities={filteredCities} />
     </Widget>
   )
 }

@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import { City } from '@modules/common/common.types'
 import { Dashboard } from '@modules/dashboard'
-import { Layout } from '@components/layout'
+import { Layout } from '@modules/common/components/layout'
 
 import { getSampleData } from '../sample'
 

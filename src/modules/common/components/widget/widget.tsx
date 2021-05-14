@@ -16,12 +16,16 @@ export const Widget = ({ children, title }: Props) => {
 
 const StyledWidget = styled.div`
   padding: 20px;
-  box-shadow: rgb(0 0 0 / 12%) 0px 2px 10px;
-  border-radius: 10px;
+  box-shadow: var(--widget-box-shadow);
+  background-color: var(--widget-bg-color);
+  border-radius: 6px;
+  width: 700px;
+  max-height: 600px;
+  flex-shrink: 0;
 `
 
 const StyledTitle = styled.h3`
   margin-bottom: 1em;
-  color: red;
+  color: var(--text-color);
   text-transform: capitalize;
 `
