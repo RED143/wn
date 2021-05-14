@@ -1,29 +1,31 @@
-import React, { SyntheticEvent } from 'react'
+import React from 'react'
 
-import { Data } from '@modules/common/common.types'
+import { City } from '@modules/common/common.types'
 import { Widget } from '@components/widget'
+import { useCity } from '@modules/common/city.context'
 
 interface Props {
-  cities: Data[]
+  cities: City[]
 }
 
-const renderOptions = (cities: Data[]) =>
-  cities.map(city => (
-    <option key={city.station_id} value={city.station_id}>
+const renderOptions = (cities: City[]) =>
+  cities.map((city, index) => (
+    <option key={city.station_id} value={index}>
       {city.place_name}
     </option>
   ))
 
 export const Map = ({ cities }: Props) => {
-  const [state, setState] = React.useState(cities[0].station_id)
+  const { dispatch } = useCity()
+  useCity
 
   const onChange = (e: any) => {
-    setState(e.target.value)
+    dispatch({ type: 'UPADTE_CITY', payload: cities[e.target.value] })
   }
 
   return (
     <Widget title="Map">
-      <select value={state} onChange={onChange} name="city">
+      <select value={0} onChange={onChange} name="city">
         {renderOptions(cities)}
       </select>
     </Widget>

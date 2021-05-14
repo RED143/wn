@@ -1,30 +1,30 @@
 import Head from 'next/head'
 
+import { City } from '@modules/common/common.types'
 import { Dashboard } from '@modules/dashboard'
-import { Data } from '@modules/common/common.types'
 import { Layout } from '@components/layout'
 
 import { getSampleData } from '../sample'
 
 interface Props {
-  data: Data[]
+  cities: City[]
 }
 
 export async function getStaticProps() {
-  const data = getSampleData()
+  const cities = getSampleData()
   return {
-    props: { data },
+    props: { cities },
   }
 }
 
-export default function Home({ data }: Props) {
+export default function Home({ cities }: Props) {
   return (
     <>
       <Head>
         <title>Weather</title>
       </Head>
       <Layout>
-        <Dashboard data={data} />
+        <Dashboard cities={cities} />
       </Layout>
     </>
   )

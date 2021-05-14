@@ -21,6 +21,7 @@ const StyledWidget = styled.div`
 `
 
 const StyledTitle = styled.h3`
-  color: red;
   margin-bottom: 1em;
+  color: red;
+  text-transform: capitalize;
 `

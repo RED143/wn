@@ -12,5 +12,8 @@ const Content = styled.div`
   max-width: 1000px;
   margin: auto;
   padding: 30px;
+  gap: 30px;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 `

@@ -1,13 +1,13 @@
-import { Data } from '@modules/common/common.types'
+import { City } from '@modules/common/common.types'
 
 import { RawData } from './data.types'
 import sample from './data.json'
 
-const isCityAlreadyExists = (data: Data[], id: number) =>
-  data.some(d => d?.station_id === id)
+const isCityAlreadyExists = (cities: City[], id: number) =>
+  cities.some(city => city?.station_id === id)
 
-export const getSampleData = (): Data[] =>
-  sample.reduce((data: Data[], value: RawData) => {
+export const getSampleData = (): City[] =>
+  sample.reduce((cities: City[], value: RawData) => {
     const {
       place_name,
       station_id,
@@ -20,13 +20,13 @@ export const getSampleData = (): Data[] =>
       precipitation_mm,
     } = value
 
-    if (isCityAlreadyExists(data, station_id)) {
-      const updatedData = data.map(d => {
-        if (d.station_id === station_id) {
+    if (isCityAlreadyExists(cities, station_id)) {
+      const updatedCity = cities.map(city => {
+        if (city.station_id === station_id) {
           return {
-            ...d,
+            ...city,
             weatherData: [
-              ...d.weatherData,
+              ...city.weatherData,
               {
                 datetime,
                 temperature_max,
@@ -37,13 +37,13 @@ export const getSampleData = (): Data[] =>
             ],
           }
         }
-        return d
+        return city
       })
-      return updatedData
+      return updatedCity
     }
 
     return [
-      ...data,
+      ...cities,
       {
         place_name,
         station_id,

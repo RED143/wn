@@ -1,16 +1,17 @@
+import { CityProvider } from '@modules/common/city.context'
 import { CityWeather } from '@modules/city-weather'
-import { Data } from '@modules/common/common.types'
+import { City } from '@modules/common/common.types'
 import { Map } from '@modules/map'
 
 interface Props {
-  data: Data[]
+  cities: City[]
 }
 
-export const Dashboard = ({ data }: Props) => {
+export const Dashboard = ({ cities }: Props) => {
   return (
-    <>
-      <Map cities={data} />
+    <CityProvider>
+      <Map cities={cities} />
       <CityWeather />
-    </>
+    </CityProvider>
   )
 }
