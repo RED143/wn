@@ -1,36 +1,46 @@
-import cn from 'classnames'
-import { css } from 'linaria'
+import { css, cx } from 'linaria'
 import { styled } from 'linaria/lib/react'
 
-import { WeatherDataLabelEnum } from '@modules/common/common.types'
+import { IconEnum, WeatherDataLabelEnum } from '@modules/common/common.types'
+import { Icon } from '@modules/common/components/icon'
+import { ChartTypeEnum } from '@modules/weather/weather.types'
 
 interface Props {
-  selectedType: WeatherDataLabelEnum
-  selectType: (type: WeatherDataLabelEnum) => void
+  selectedType: ChartTypeEnum
+  selectType: (type: ChartTypeEnum) => void
 }
 
-const types = [
-  WeatherDataLabelEnum.ALL,
-  WeatherDataLabelEnum.TEMP_MAX,
-  WeatherDataLabelEnum.TEMP_MIN,
-  WeatherDataLabelEnum.PRECIPITATION_MM,
-  WeatherDataLabelEnum.PRECIPITATION_PROBABILITY,
+const filters = [
+  {
+    value: ChartTypeEnum.PRECIPITATION,
+    icon: IconEnum.WATER,
+  },
+  {
+    value: ChartTypeEnum.TEMP,
+    icon: IconEnum.FIRE,
+  },
 ]
 
+const getActiveColor = (type: ChartTypeEnum) =>
+  type === ChartTypeEnum.PRECIPITATION ? activeBlue : activeRed
+
 const renderButtons = (
-  selectedType: WeatherDataLabelEnum,
+  selectedType: ChartTypeEnum,
   selectType: (type: string) => void
 ) =>
-  types.map(type => (
-    <StyledLabel key={type} className={cn({ [active]: type === selectedType })}>
-      {type}
+  filters.map(({ value, icon }) => (
+    <StyledLabel
+      key={value}
+      className={cx(value === selectedType && getActiveColor(value))}
+    >
+      <Icon name={icon} />
       <input
-        type="radio"
-        name="date"
-        value={type}
+        type="checkbox"
+        name={value}
+        value={value}
         className="sr-only"
-        checked={type === selectedType}
-        onChange={e => selectType(e.target.value)}
+        checked={value === selectedType}
+        onChange={e => selectType(e.target.checked && value)}
       />
     </StyledLabel>
   ))
@@ -42,15 +52,29 @@ export const WeatherTypeSelector = ({ selectedType, selectType }: Props) => {
 }
 
 const StyledLabel = styled.label`
-  font-weight: bold;
-  padding: 15px 15px;
+  padding: 6px;
+  line-height: 0;
   cursor: pointer;
+
+  & + & {
+    margin-left: 6px;
+  }
 `
 
 const StyledContainer = styled.div`
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  color: var(--chart-filter-color);
+  background-color: var(--chart-filters-bg-color);
+  padding: 0 6px;
+  border-radius: 6px;
+  border: 1px solid var(--chart-filters-border-color);
 `
 
-const active = css`
-  box-shadow: inset 0px -3px 0px #007bc7;
+const activeBlue = css`
+  color: #007bc7;
+`
+
+const activeRed = css`
+  color: red;
 `

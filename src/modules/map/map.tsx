@@ -2,7 +2,7 @@ import { FC, useState } from 'react'
 
 import dynamic from 'next/dynamic'
 
-import { City } from '@modules/common/common.types'
+import { City, IconEnum } from '@modules/common/common.types'
 import { Widget } from '@modules/common/components/widget'
 
 import { LeafletMapProps } from './components/leaflet-map/leaflet-map'
@@ -29,7 +29,7 @@ export const Map = ({ cities }: Props) => {
   return (
     <Widget
       title="Map"
-      iconName="map"
+      iconName={IconEnum.MAP}
       filter={<MapFilter value={filter} onChange={setFilter} />}
     >
       <LeafletMap cities={filteredCities} />

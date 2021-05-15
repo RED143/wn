@@ -19,6 +19,9 @@ export const light = css`
 
   --chart-bg-color: #f7f7f7;
   --chart-border-color: #e9f2f9;
+  --chart-filters-bg-color: #f7f7f7;
+  --chart-filter-color: #afb9c8;
+  --chart-filters-border-color: #e9f2f9;
 
   background-color: var(--body-bg-color);
 `

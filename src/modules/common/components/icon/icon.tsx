@@ -1,8 +1,10 @@
 import { IconEnum } from '@modules/common/common.types'
 
 import { ChartPath } from './icons/chart'
+import { FirePath } from './icons/fire'
 import { MapPath } from './icons/map'
 import { SearchPath } from './icons/search'
+import { WaterPath } from './icons/water'
 
 interface Props {
   name: IconEnum
@@ -11,9 +13,11 @@ interface Props {
 }
 
 const mapIcon = {
-  chart: ChartPath,
-  map: MapPath,
-  search: SearchPath,
+  [IconEnum.CHART]: ChartPath,
+  [IconEnum.FIRE]: FirePath,
+  [IconEnum.MAP]: MapPath,
+  [IconEnum.SEARCH]: SearchPath,
+  [IconEnum.WATER]: WaterPath,
 }
 
 export const Icon = ({ name, width = 20, height = 20 }: Props) => {

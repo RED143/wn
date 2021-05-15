@@ -34,4 +34,6 @@ export enum IconEnum {
   SEARCH = 'search',
   MAP = 'map',
   CHART = 'chart',
+  WATER = 'water',
+  FIRE = 'fire',
 }
