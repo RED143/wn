@@ -22,11 +22,16 @@ interface Props {
 export const Map = ({ cities }: Props) => {
   const [filter, setFilter] = useState('')
 
-  const filteredCities = cities.filter(city => city.place_name.includes(filter))
+  const filteredCities = cities.filter(city =>
+    city.place_name?.toLocaleLowerCase()?.includes(filter)
+  )
 
   return (
-    <Widget title="Map">
-      <MapFilter value={filter} onChange={setFilter} />
+    <Widget
+      title="Map"
+      iconName="map"
+      filter={<MapFilter value={filter} onChange={setFilter} />}
+    >
       <LeafletMap cities={filteredCities} />
     </Widget>
   )

@@ -1,14 +1,28 @@
 import { styled } from 'linaria/react'
 
+import { Icon } from '@modules/common/components/icon'
+import { IconEnum } from '@modules/common/common.types'
+
 interface Props {
   children: React.ReactNode
+  filter: React.ReactNode
   title: string
+  iconName: IconEnum
 }
 
-export const Widget = ({ children, title }: Props) => {
+export const Widget = ({
+  children,
+  title,
+  filter,
+  iconName = IconEnum.SEARCH,
+}: Props) => {
   return (
     <StyledWidget>
-      <StyledTitle>{title}</StyledTitle>
+      <StyledTitleContainer>
+        <Icon name={iconName} />
+        <StyledTitle>{title}</StyledTitle>
+        {filter}
+      </StyledTitleContainer>
       {children}
     </StyledWidget>
   )
@@ -25,7 +39,14 @@ const StyledWidget = styled.div`
 `
 
 const StyledTitle = styled.h3`
-  margin-bottom: 1em;
   color: var(--text-color);
   text-transform: capitalize;
+  margin-right: auto;
+  margin-left: 8px;
+`
+
+const StyledTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
 `

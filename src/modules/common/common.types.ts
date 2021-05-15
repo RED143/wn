@@ -29,3 +29,8 @@ export enum WeatherDataLabelEnum {
   PRECIPITATION_PROBABILITY = 'Precipitation Probability',
   PRECIPITATION_MM = 'Precipitation',
 }
+
+export enum IconEnum {
+  SEARCH = 'search',
+  MAP = 'map',
+}
