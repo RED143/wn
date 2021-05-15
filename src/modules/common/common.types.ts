@@ -33,4 +33,5 @@ export enum WeatherDataLabelEnum {
 export enum IconEnum {
   SEARCH = 'search',
   MAP = 'map',
+  CHART = 'chart',
 }

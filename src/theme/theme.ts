@@ -15,5 +15,7 @@ export const light = css`
 
   --body-bg-color: #fdfdfd;
 
+  --placeholder-text-color: #afb9c8;
+
   background-color: var(--body-bg-color);
 `

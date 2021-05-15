@@ -3,7 +3,6 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/modules/common/components/*"],
       "@modules/*": ["src/modules/*"],
     },
     "lib": [
@@ -26,8 +25,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "src/modules/map/components/leaflet-map"  ],
+    "**/*.tsx",
+  ],
   "exclude": [
     "node_modules"
   ]

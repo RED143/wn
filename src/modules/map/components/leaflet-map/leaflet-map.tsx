@@ -30,6 +30,7 @@ export const LeafletMap = ({ cities }: LeafletMapProps) => {
       <MapContainer
         center={[52, 5]}
         zoom={11}
+        zoomControl={false}
         style={{ height: '100%', width: '100%' }}
         whenCreated={map => {
           map.setView([52.2129919, 5.2793703], 7, {
@@ -49,4 +50,6 @@ export const LeafletMap = ({ cities }: LeafletMapProps) => {
 
 const StyledMapContainer = styled.div`
   height: 450px;
+  border-radius: 6px;
+  overflow: hidden;
 `

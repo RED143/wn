@@ -5,24 +5,21 @@ import { IconEnum } from '@modules/common/common.types'
 
 interface Props {
   children: React.ReactNode
-  filter: React.ReactNode
-  title: string
-  iconName: IconEnum
+  filter?: React.ReactNode
+  title?: string
+  iconName?: IconEnum
 }
 
-export const Widget = ({
-  children,
-  title,
-  filter,
-  iconName = IconEnum.SEARCH,
-}: Props) => {
+export const Widget = ({ children, title, filter, iconName }: Props) => {
   return (
     <StyledWidget>
-      <StyledTitleContainer>
-        <Icon name={iconName} />
-        <StyledTitle>{title}</StyledTitle>
-        {filter}
-      </StyledTitleContainer>
+      {title && (
+        <StyledTitleContainer>
+          {iconName && <Icon name={iconName} />}
+          <StyledTitle>{title}</StyledTitle>
+          {filter}
+        </StyledTitleContainer>
+      )}
       {children}
     </StyledWidget>
   )
@@ -34,7 +31,6 @@ const StyledWidget = styled.div`
   background-color: var(--widget-bg-color);
   border-radius: 6px;
   width: 700px;
-  max-height: 600px;
   flex-shrink: 0;
 `
 

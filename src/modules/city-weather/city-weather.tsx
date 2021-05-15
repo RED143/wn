@@ -6,6 +6,7 @@ import { Widget } from '@modules/common/components/widget'
 
 import { CityWeatherTypeSelector } from './components/city-weather-type-selector'
 import { CityWeatherChart } from './components/city-weather-chart.tsx'
+import { CityWeahterPlaceholder } from './components/city-weather-placeholder'
 
 export const CityWeather = () => {
   const { city } = useCity()
@@ -18,10 +19,12 @@ export const CityWeather = () => {
 
   const title = `weather ${city?.place_name || ''}`
 
-  return (
+  return city.station_id ? (
     <Widget title={title}>
       {/* <CityWeatherTypeSelector selectedType={type} selectType={setType} /> */}
       <CityWeatherChart type={type} />
     </Widget>
+  ) : (
+    <CityWeahterPlaceholder />
   )
 }
