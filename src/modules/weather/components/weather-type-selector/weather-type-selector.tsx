@@ -76,5 +76,5 @@ const activeBlue = css`
 `
 
 const activeRed = css`
-  color: red;
+  color: #f00;
 `
