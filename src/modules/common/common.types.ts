@@ -26,7 +26,7 @@ export enum WeatherDataLabelEnum {
   ALL = 'All Types',
   TEMP_MAX = 'Temperature Max',
   TEMP_MIN = 'Temperature Min',
-  PRECIPITATION_PROBABILITY = 'Precipitation Probability',
+  PRECIPITATION_PROBABILITY = 'Precipitation %',
   PRECIPITATION_MM = 'Precipitation',
 }
 

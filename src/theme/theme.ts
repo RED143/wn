@@ -17,5 +17,8 @@ export const light = css`
 
   --placeholder-text-color: #afb9c8;
 
+  --chart-bg-color: #f7f7f7;
+  --chart-border-color: #e9f2f9;
+
   background-color: var(--body-bg-color);
 `

@@ -1,55 +1,43 @@
-import { WeatherData } from '@modules/common/common.types'
+import { WeatherData, WeatherDataLabelEnum } from '@modules/common/common.types'
 import { getShortDate } from './date'
+
+const getValueInDependsOnType = (
+  label: WeatherDataLabelEnum,
+  weatherData: WeatherData
+) => {
+  switch (label) {
+    case WeatherDataLabelEnum.TEMP_MAX:
+      return weatherData.temperature_max
+    case WeatherDataLabelEnum.TEMP_MIN:
+      return weatherData.temperature_min
+    case WeatherDataLabelEnum.PRECIPITATION_MM:
+      return weatherData.precipitation_mm
+    case WeatherDataLabelEnum.PRECIPITATION_PROBABILITY:
+      return weatherData.precipitation_probability
+  }
+}
 
 export const generateChartData = (weatherData: WeatherData[]) =>
   weatherData?.reduce(
     (chartData, weatherData) => {
       const filledData = chartData.map(chart => {
-        const label = chart.id
         const shortDate = getShortDate(weatherData.datetime)
 
-        switch (label) {
-          case 'Temperature Max':
-            return {
-              id: 'Temperature Max',
-              data: [
-                ...chart.data,
-                { x: shortDate, y: weatherData.temperature_max },
-              ],
-            }
-          case 'Temperature Min':
-            return {
-              id: 'Temperature Min',
-              data: [
-                ...chart.data,
-                { x: shortDate, y: weatherData.temperature_min },
-              ],
-            }
-          case 'Precipitation':
-            return {
-              id: 'Precipitation',
-              data: [
-                ...chart.data,
-                { x: shortDate, y: weatherData.precipitation_mm },
-              ],
-            }
-          case 'Precipitation Probability':
-            return {
-              id: 'Precipitation Probability',
-              data: [
-                ...chart.data,
-                { x: shortDate, y: weatherData.precipitation_probability },
-              ],
-            }
+        return {
+          id: chart.id,
+          data: [
+            ...chart.data,
+            { x: shortDate, y: getValueInDependsOnType(chart.id, weatherData) },
+          ],
         }
       })
 
       return filledData
     },
     [
-      { id: 'Temperature Max', data: [] },
-      { id: 'Temperature Min', data: [] },
-      { id: 'Precipitation', data: [] },
-      { id: 'Precipitation Probability', data: [] },
+      { id: WeatherDataLabelEnum.PRECIPITATION_PROBABILITY, data: [] },
+      { id: WeatherDataLabelEnum.PRECIPITATION_MM, data: [] },
+      { id: WeatherDataLabelEnum.TEMP_MIN, data: [] },
+      { id: WeatherDataLabelEnum.TEMP_MAX, data: [] },
     ]
   ) || []

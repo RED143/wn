@@ -35,10 +35,7 @@ const renderButtons = (
     </StyledLabel>
   ))
 
-export const CityWeatherTypeSelector = ({
-  selectedType,
-  selectType,
-}: Props) => {
+export const WeatherTypeSelector = ({ selectedType, selectType }: Props) => {
   return (
     <StyledContainer>{renderButtons(selectedType, selectType)}</StyledContainer>
   )

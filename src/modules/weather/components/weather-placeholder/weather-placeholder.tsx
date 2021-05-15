@@ -4,7 +4,7 @@ import { Icon } from '@modules/common/components/icon'
 import { Widget } from '@modules/common/components/widget'
 import { IconEnum } from '@modules/common/common.types'
 
-export const CityWeahterPlaceholder = () => {
+export const WeahterPlaceholder = () => {
   return (
     <Widget>
       <StyledContainer>

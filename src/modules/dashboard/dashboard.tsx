@@ -1,5 +1,5 @@
 import { CityProvider } from '@modules/common/city.context'
-import { CityWeather } from '@modules/city-weather'
+import { Weather } from '@modules/weather'
 import { City } from '@modules/common/common.types'
 import { Map } from '@modules/map'
 
@@ -11,7 +11,7 @@ export const Dashboard = ({ cities }: Props) => {
   return (
     <CityProvider>
       <Map cities={cities} />
-      <CityWeather />
+      <Weather />
     </CityProvider>
   )
 }
