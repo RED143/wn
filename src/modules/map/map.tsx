@@ -1,5 +1,4 @@
 import { FC, useState } from 'react'
-
 import dynamic from 'next/dynamic'
 
 import { City, IconEnum } from '@modules/common/common.types'
@@ -7,11 +6,14 @@ import { Widget } from '@modules/common/components/widget'
 
 import { LeafletMapProps } from './components/leaflet-map/leaflet-map'
 import { MapFilter } from './components/map-filler'
+import { MapPlaceholder } from './components/map-placeholder'
 
 const LeafletMap = dynamic(
   () => import('./components/leaflet-map').then(mod => mod.LeafletMap),
   {
     ssr: false,
+    // eslint-disable-next-line react/display-name
+    loading: () => <MapPlaceholder />,
   }
 ) as FC<LeafletMapProps>
 

@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 import { MapContainer, TileLayer } from 'react-leaflet'
 import { styled } from 'linaria/lib/react'
 
@@ -20,47 +18,30 @@ const renderCitiesAsMarkers = (cities: City[]) => {
   ))
 }
 
-export const LeafletMap = ({ cities }: LeafletMapProps) => {
-  const [inBrowser, setInBrowswer] = useState(false)
-
-  useEffect(() => {
-    setInBrowswer(true)
-  }, [])
-
-  return (
-    <StyledMapContainer>
-      {inBrowser ? (
-        <MapContainer
-          center={[52, 5]}
-          zoom={11}
-          zoomControl={false}
-          style={{ height: '100%', width: '100%' }}
-          whenCreated={map => {
-            map.setView([52.2129919, 5.2793703], 7, {
-              animate: true,
-            })
-          }}
-        >
-          {renderCitiesAsMarkers(cities)}
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </MapContainer>
-      ) : (
-        <StyledMapPlaceholder />
-      )}
-    </StyledMapContainer>
-  )
-}
+export const LeafletMap = ({ cities }: LeafletMapProps) => (
+  <StyledMapContainer>
+    <MapContainer
+      center={[52, 5]}
+      zoom={11}
+      zoomControl={false}
+      style={{ height: '100%', width: '100%' }}
+      whenCreated={map => {
+        map.setView([52.2129919, 5.2793703], 7, {
+          animate: true,
+        })
+      }}
+    >
+      {renderCitiesAsMarkers(cities)}
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+    </MapContainer>
+  </StyledMapContainer>
+)
 
 const StyledMapContainer = styled.div`
   height: 450px;
   border-radius: 6px;
   overflow: hidden;
-`
-const StyledMapPlaceholder = styled.div`
-  height: 450px;
-  border-radius: 6px;
-  background-color: var(--map-placeholder-color);
 `

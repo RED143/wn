@@ -1,13 +1,28 @@
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 
 import '../styles/index.css'
 
-import { light } from 'src/theme/theme'
-
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className={light}>
+    <>
+      <Head>
+        <link
+          rel="preload"
+          href="/fonts/notosanstc-regular-webfont.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="true"
+        />
+        <link
+          rel="preload"
+          href="/fonts/notosanstc-bold-webfont.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="true"
+        />
+      </Head>
       <Component {...pageProps} />
-    </div>
+    </>
   )
 }
