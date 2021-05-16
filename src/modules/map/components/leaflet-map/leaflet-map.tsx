@@ -13,10 +13,10 @@ export interface LeafletMapProps {
 }
 
 const renderCitiesAsMarkers = (cities: City[]) => {
-  const { dispatch } = useCity()
+  const { setCity } = useCity()
 
   const updateCity = useCallback((city: City) => {
-    dispatch({ type: 'UPADTE_CITY', payload: city })
+    setCity(city)
   }, [])
 
   return cities.map(city => (

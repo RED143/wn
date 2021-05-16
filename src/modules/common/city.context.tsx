@@ -2,29 +2,16 @@ import React from 'react'
 
 import { City } from './common.types'
 
-type Action = { type: 'UPADTE_CITY'; payload: City }
-type Dispatch = (action: Action) => void
 type CityProviderProps = { children: React.ReactNode }
 
 const CityContext =
-  React.createContext<{ city: City; dispatch: Dispatch } | undefined>(undefined)
-
-const countReducer = (city: City, action: Action) => {
-  switch (action.type) {
-    case 'UPADTE_CITY': {
-      return action.payload
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action.type}`)
-    }
-  }
-}
+  React.createContext<
+    { city: City; setCity: (city: City) => void } | undefined
+  >(undefined)
 
 const CityProvider = ({ children }: CityProviderProps) => {
-  const [city, dispatch] = React.useReducer(countReducer, {} as City)
-  // NOTE: you *might* need to memoize this value
-  // Learn more in http://kcd.im/optimize-context
-  const value = { city, dispatch }
+  const [city, setCity] = React.useState<City>()
+  const value = { city, setCity }
   return <CityContext.Provider value={value}>{children}</CityContext.Provider>
 }
 

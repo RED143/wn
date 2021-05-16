@@ -3,7 +3,9 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      "@modules/*": ["src/modules/*"],
+      "@modules/*": [
+        "src/modules/*"
+      ]
     },
     "lib": [
       "dom",
@@ -25,7 +27,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx",
+    "**/*.tsx"
   ],
   "exclude": [
     "node_modules"

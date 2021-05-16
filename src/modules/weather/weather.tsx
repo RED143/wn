@@ -15,7 +15,7 @@ export const Weather = () => {
 
   const title = `weather ${city?.place_name || ''}`
 
-  return city.station_id ? (
+  return city?.station_id ? (
     <Widget
       title={title}
       iconName={IconEnum.CHART}
