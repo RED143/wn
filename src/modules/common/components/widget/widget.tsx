@@ -31,6 +31,7 @@ const StyledWidget = styled.div`
   background-color: var(--widget-bg-color);
   border-radius: 6px;
   width: 700px;
+  min-height: 540px;
   flex-shrink: 0;
 `
 

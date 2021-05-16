@@ -7,7 +7,7 @@ import { useCity } from '@modules/common/city.context'
 import { WeatherDataLabelEnum } from '@modules/common/common.types'
 
 import { WeatherChartTooltip } from '../weather-chart-tooltip'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 
 interface Props {
   type: ChartTypeEnum

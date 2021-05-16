@@ -6,7 +6,7 @@ import { Widget } from '@modules/common/components/widget'
 
 import { ChartTypeEnum } from './weather.types'
 import { WeatherChart } from './components/weather-chart.tsx'
-import { WeahterPlaceholder } from './components/weather-placeholder'
+import { WeatherPlaceholder } from './components/weather-placeholder'
 import { WeatherTypeSelector } from './components/weather-type-selector'
 
 export const Weather = () => {
@@ -24,6 +24,6 @@ export const Weather = () => {
       <WeatherChart type={type} />
     </Widget>
   ) : (
-    <WeahterPlaceholder />
+    <WeatherPlaceholder />
   )
 }

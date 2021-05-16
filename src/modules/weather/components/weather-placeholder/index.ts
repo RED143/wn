@@ -1,1 +1,1 @@
-export { WeahterPlaceholder } from './weather-placeholder'
+export { WeatherPlaceholder } from './weather-placeholder'

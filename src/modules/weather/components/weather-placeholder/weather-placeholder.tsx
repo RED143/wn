@@ -4,12 +4,12 @@ import { Icon } from '@modules/common/components/icon'
 import { Widget } from '@modules/common/components/widget'
 import { IconEnum } from '@modules/common/common.types'
 
-export const WeahterPlaceholder = () => {
+export const WeatherPlaceholder = () => {
   return (
     <Widget>
       <StyledContainer>
         <Icon name={IconEnum.CHART} width={80} height={80} />
-        <StyledText>Chose any marker on the map</StyledText>
+        <StyledText>Choose any marker on the map</StyledText>
       </StyledContainer>
     </Widget>
   )

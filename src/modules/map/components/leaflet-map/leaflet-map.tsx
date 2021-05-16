@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useEffect, useState } from 'react'
 
 import { MapContainer, TileLayer } from 'react-leaflet'
 import { styled } from 'linaria/lib/react'
@@ -15,35 +15,41 @@ export interface LeafletMapProps {
 const renderCitiesAsMarkers = (cities: City[]) => {
   const { setCity } = useCity()
 
-  const updateCity = useCallback((city: City) => {
-    setCity(city)
-  }, [])
-
   return cities.map(city => (
-    <MapMarker key={city.station_id} city={city} updateCity={updateCity} />
+    <MapMarker key={city.station_id} city={city} updateCity={setCity} />
   ))
 }
 
 export const LeafletMap = ({ cities }: LeafletMapProps) => {
+  const [inBrowser, setInBrowswer] = useState(false)
+
+  useEffect(() => {
+    setInBrowswer(true)
+  }, [])
+
   return (
     <StyledMapContainer>
-      <MapContainer
-        center={[52, 5]}
-        zoom={11}
-        zoomControl={false}
-        style={{ height: '100%', width: '100%' }}
-        whenCreated={map => {
-          map.setView([52.2129919, 5.2793703], 7, {
-            animate: true,
-          })
-        }}
-      >
-        {renderCitiesAsMarkers(cities)}
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-      </MapContainer>
+      {inBrowser ? (
+        <MapContainer
+          center={[52, 5]}
+          zoom={11}
+          zoomControl={false}
+          style={{ height: '100%', width: '100%' }}
+          whenCreated={map => {
+            map.setView([52.2129919, 5.2793703], 7, {
+              animate: true,
+            })
+          }}
+        >
+          {renderCitiesAsMarkers(cities)}
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        </MapContainer>
+      ) : (
+        <StyledMapPlaceholder />
+      )}
     </StyledMapContainer>
   )
 }
@@ -52,4 +58,9 @@ const StyledMapContainer = styled.div`
   height: 450px;
   border-radius: 6px;
   overflow: hidden;
+`
+const StyledMapPlaceholder = styled.div`
+  height: 450px;
+  border-radius: 6px;
+  background-color: var(--map-placeholder-color);
 `

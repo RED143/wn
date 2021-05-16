@@ -6,6 +6,7 @@ export const light = css`
 
   --widget-bg-color: #fff;
   --widget-box-shadow: 0 10px 40px -10px rgb(0 64 128 / 20%);
+  --map-placeholder-color: #f7f7f7;
 
   --intput-bg-color: #f7f7f7;
   --input-text-color: #687980;
