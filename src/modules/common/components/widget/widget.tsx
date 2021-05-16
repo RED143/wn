@@ -30,7 +30,7 @@ const StyledWidget = styled.div`
   box-shadow: var(--widget-box-shadow);
   background-color: var(--widget-bg-color);
   border-radius: 6px;
-  width: 700px;
+  width: 650px;
   min-height: 540px;
   flex-shrink: 0;
 `

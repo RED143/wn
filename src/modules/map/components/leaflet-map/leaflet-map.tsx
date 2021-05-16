@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import { styled } from 'linaria/lib/react'
 
@@ -13,8 +14,12 @@ export interface LeafletMapProps {
 const renderCitiesAsMarkers = (cities: City[]) => {
   const { setCity } = useCity()
 
+  const updateCity = useCallback((city: City) => {
+    setCity(city)
+  }, [])
+
   return cities.map(city => (
-    <MapMarker key={city.station_id} city={city} updateCity={setCity} />
+    <MapMarker key={city.station_id} city={city} updateCity={updateCity} />
   ))
 }
 

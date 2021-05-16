@@ -13,11 +13,9 @@ export const Weather = () => {
   const { city } = useCity()
   const [type, setType] = useState<ChartTypeEnum>()
 
-  const title = `weather ${city?.place_name || ''}`
-
   return city?.station_id ? (
     <Widget
-      title={title}
+      title={city.place_name}
       iconName={IconEnum.CHART}
       filter={<WeatherTypeSelector selectedType={type} selectType={setType} />}
     >
